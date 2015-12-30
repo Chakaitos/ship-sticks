@@ -32,6 +32,11 @@ class ProductsController < ApplicationController
     render json: products
   end
 
+  def find_best_match
+    best_match = Product.best_match(length, width, height, weight)
+    render json: best_match || "There was no match for those dimensions"
+  end
+
   def update
     product.update_attributes(product_params)
     render json: product
