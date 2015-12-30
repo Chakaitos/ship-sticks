@@ -32,6 +32,17 @@ class ProductsController < ApplicationController
     render json: products
   end
 
+  def update
+    product.update_attributes(product_params)
+    render json: product
+  end
+
+  def delete
+    message = "Successfully deleted #{product.name}"
+    product.destroy
+    render json: message
+  end
+
   private
   def wrap_response
     if (block_given?)
