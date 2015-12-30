@@ -20,11 +20,6 @@ GET '/products
 GET '/products/dimensions/48/14/12/42
 ```
 
-3) shows one product based on its id
-```ruby
-GET '/products/56836ea58c4fb526d3000000
-```
-
 ## UPDATE
 ```ruby
 PUT '/products/:id?name=Small Package&type=Golf&length=48&width=14&height=12&weight=42'
