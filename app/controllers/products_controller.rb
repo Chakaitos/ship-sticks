@@ -25,6 +25,10 @@ class ProductsController < ApplicationController
     end
   end
 
+  def index
+    render json: products
+  end
+
   private
   def wrap_response
     if (block_given?)
