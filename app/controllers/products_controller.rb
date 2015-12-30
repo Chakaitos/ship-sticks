@@ -22,30 +22,43 @@ class ProductsController < ApplicationController
 
   def create
     wrap_response do
-      prod = Product.create!(product_params)
+      prod = Product.create(product_params)
 
       render json: prod
     end
   end
 
   def index
-    render json: products
+    wrap_response do
+      render json: products
+    end
+  end
+
+  def show
+    wrap_response do
+      render json: product
+    end
   end
 
   def find_best_match
-    best_match = Product.best_match(length, width, height, weight)
-    render json: best_match || "There was no match for those dimensions"
+    wrap_response do
+      best_match = Product.best_match(length, width, height, weight)
+      render json: best_match || { message: "There was no match for those dimensions" }
+    end
   end
 
   def update
-    product.update_attributes(product_params)
-    render json: product
+    wrap_response do
+      product.update_attributes(product_params)
+      render json: product
+    end
   end
 
-  def delete
-    message = "Successfully deleted #{product.name}"
-    product.destroy
-    render json: message
+  def destroy
+    wrap_response do
+      product.destroy
+      render json: { message: "Successfully deleted #{product.name}" }
+    end
   end
 
   private
