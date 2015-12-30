@@ -10,4 +10,18 @@ class ProductsController < ApplicationController
   expose(:product)  { Product.find(id) }
   expose(:products) { Product.all }
 
+  def create
+    wrap_response do
+      prod = Product.create(
+        name: name,
+        type: type,
+        length: length,
+        width: width,
+        height: height,
+        weight: weight
+      )
+
+      render json: prod
+    end
+  end
 end
