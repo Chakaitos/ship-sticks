@@ -34,12 +34,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  def show
-    wrap_response do
-      render json: product
-    end
-  end
-
   def find_best_match
     wrap_response do
       best_match = Product.best_match(length, width, height, weight)
