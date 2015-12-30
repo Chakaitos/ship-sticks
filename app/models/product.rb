@@ -15,4 +15,7 @@ class Product
   scope :best_height, ->(height) { where("height >= ?", height).order('height asc') }
   scope :best_weight, ->(weight) { where("weight >= ?", weight).order('weight asc') }
 
+  def self.best_match length, width, height, weight
+    self.best_length(length).best_width(width).best_height(height).best_weight(weight)
+  end
 end
