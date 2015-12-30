@@ -9,4 +9,10 @@ class Product
 
   validates :name, :type, :length, :width, :height, :weight, presence: true
   validates :name, uniqueness: true
+
+  scope :best_length, ->(length) { where("length >= ?", length).order('length asc') }
+  scope :best_width, ->(width) { where("width >= ?", width).order('width asc') }
+  scope :best_height, ->(height) { where("height >= ?", height).order('height asc') }
+  scope :best_weight, ->(weight) { where("weight >= ?", weight).order('weight asc') }
+
 end
