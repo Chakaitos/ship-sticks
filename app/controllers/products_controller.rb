@@ -24,4 +24,21 @@ class ProductsController < ApplicationController
       render json: prod
     end
   end
+
+  private
+  def wrap_response
+    if (block_given?)
+      begin
+        yield
+      rescue => e
+        failure_response e.message
+      end
+    end
+  end
+
+  def failure_response error
+    render json: {
+      message: error
+    }, status: 400
+  end
 end
