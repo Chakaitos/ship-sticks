@@ -37,7 +37,8 @@ class ProductsController < ApplicationController
   def find_best_match
     wrap_response do
       best_match = Product.best_match(length, width, height, weight)
-      render json: best_match || { message: "There was no match for those dimensions" }
+      message = best_match ? { message: "#{best_match.type} - #{best_match.name}" } : { message: "There was no match for those dimensions" }
+      render json: message
     end
   end
 
